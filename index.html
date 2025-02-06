@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Journey for the Past Year</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: linear-gradient(to bottom, #ffcccb, #ffb6c1); /* Initial gradient from light pink to pastel pink */
+            transition: background 0.3s ease;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #FF69B4;
+        }
+
+        .month {
+            margin: 20px 0;
+            display: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #FF1493;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #FF1493;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #FF69B4;
+        }
+
+        #valentine-options {
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .journey {
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="journey">
+        <div class="intro">
+            <h1>Our Journey for the Past Year</h1>
+        </div>
+
+        <div class="month" id="jan">
+            <h2>January 2024</h2>
+            <p>"What if we date?" Definitely a high risk-high reward question.</p>
+        </div>
+        <div class="month" id="feb">
+            <h2>February 2024</h2>
+            <p>We sent lots of pictures to each other... lowkey flirting.</p>
+        </div>
+        <div class="month" id="mar">
+            <h2>March 2024</h2>
+            <p>We didn't talk much, but we did have a lot of calls. Especially during my midterms.</p>
+        </div>
+        <div class="month" id="apr">
+            <h2>April 2024</h2>
+            <p>Our fake dating trope. Got ourselves in DEEP waters.</p>
+        </div>
+        <div class="month" id="may">
+            <h2>May 2024</h2>
+            <p>#Complicated as HELL. We had a lot of fun, calls, and deep talks. We def took our fake dating too seriously.</p>
+        </div>
+        <div class="month" id="jun">
+            <h2>June 2024</h2>
+            <p>We ended our fake dating trope.</p>
+        </div>
+        <div class="month" id="jul">
+            <h2>July 2024</h2>
+            <p>Partied and I wore the #Complicated colored bracelet lol.</p>
+        </div>
+        <div class="month" id="aug">
+            <h2>August 2024</h2>
+            <p>Crash out all the time. GENUINELY CRASHED OUT I WANTED TO DATE YOU BUT SO MANY THINGS TO THINK ABOUT.</p>
+        </div>
+        <div class="month" id="sep">
+            <h2>September 2024</h2>
+            <p>Officially boyfriend and girlfriend... YAY.</p>
+        </div>
+        <div class="month" id="oct">
+            <h2>October 2024</h2>
+            <p>Our first month seeing each other. Full of random calls. LATE NIGHT CALLS.... and just constant support.</p>
+        </div>
+        <div class="month" id="nov">
+            <h2>November 2024</h2>
+            <p>Business as usual. Constant communication, you mentioned about going home and I just couldn't wait.</p>
+        </div>
+        <div class="month" id="dec">
+            <h2>December 2024</h2>
+            <p>First time seeing each other as a couple. Sat with your family for like 1.5 hours to pick you up. Met your grandparents. Went on dates! First kiss!!!</p>
+        </div>
+        <div class="month" id="jan2025">
+            <h2>January 2025</h2>
+            <p>You had dinner with my mom and siblings. But.. we part ways again... but we met in Hong Kong! #HopeCore.</p>
+        </div>
+        <div class="month" id="feb2025">
+            <h2>February 2025</h2>
+            <p>Our first Valentine? 💌</p>
+            <button class="button" onclick="showValentineQuestion()">Click to Answer</button>
+            <div id="valentine-options" class="hidden">
+                <button class="button" onclick="answerValentine('yes')">Yes</button>
+                <button class="button" onclick="answerValentine('no')">No</button>
+            </div>
+            <div id="valentine-answer" class="hidden"></div>
+        </div>
+
+        <button id="next-button" class="button" onclick="nextMonth()">Next</button>
+    </div>
+
+    <script>
+        let currentMonthIndex = 0;
+        const months = document.querySelectorAll('.month');
+        const nextButton = document.getElementById('next-button');
+
+        // Initially show only the first month
+        months[currentMonthIndex].style.display = "block";
+
+        // Scroll event listener to change gradient effect
+        window.addEventListener('scroll', () => {
+            let scrollPosition = window.scrollY;
+            let gradientIntensity = Math.min(scrollPosition / 10, 1); // Adjust gradient intensity as you scroll
+            document.body.style.background = `linear-gradient(to bottom, #ffcccb, rgba(255, 182, 193, ${gradientIntensity}))`; // Update background gradient dynamically
+        });
+
+        function nextMonth() {
+            // Show the next month without hiding the previous ones
+            currentMonthIndex++;
+            if (currentMonthIndex < months.length) {
+                months[currentMonthIndex].style.display = "block";
+            }
+
+            // If we've reached the last month, hide the next button
+            if (currentMonthIndex === months.length - 1) {
+                nextButton.style.display = "none";
+            }
+        }
+
+        function showValentineQuestion() {
+            document.getElementById("valentine-options").style.display = "block";
+        }
+
+        function answerValentine(answer) {
+            let answerText = "";
+            if (answer === "yes") {
+                answerText = "obv lol #bestcoupleever";
+            } else if (answer === "no") {
+                answerText = "NOT AN OPTION. Rechoose!";
+            }
+            document.getElementById("valentine-answer").innerText = answerText;
+            document.getElementById("valentine-answer").style.display = "block";
+            document.getElementById("valentine-options").style.display = "none"; // Hide options after selection
+        }
+    </script>
+
+</body>
+</html>
